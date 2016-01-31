@@ -1,18 +1,24 @@
 #!/usr/bin/env ruby
-# coment 
+
 require 'rake/testtask'
 require 'rubygems'
 require 'rake'
-#require 'haml'
+require 'haml'
 
-task default: :ring
+task default: :compile
 
-task :ring do
-  puts "Bell is ringing."
+task :compile do
+  FileList.new('./src/*.html.haml').each do |filename|
+    if filename =~ /([^\/]+)\.haml$/
+      File.open($1, 'w') do |f|
+        f.write Haml::Engine.new(File.read(filename)).render
+      end
+    end
+  end
 end
- 
-task :enter do
-  puts "Entering home!"
+
+task :clean do
+  FileUtils.rm_r(Dir.glob("./*.html"), force: true)
 end
 
 task :test do 
