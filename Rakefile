@@ -5,7 +5,7 @@ require 'rubygems'
 require 'rake'
 #require 'haml'
 
-task default: :compile
+task default: :ring
 
 task :ring do
   puts "Bell is ringing."
