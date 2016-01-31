@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+# comment
 require 'rake/testtask'
 require 'rubygems'
 require 'rake'
